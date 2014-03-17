@@ -4,15 +4,14 @@ phonegap-revmob-plugin
 Update to the official [RevMob Phonegap Cordova SDK](http://sdk.revmobmobileadnetwork.com/phonegap_cordova.html) to enable automatic installation via local Phonegap CLI. 
 
 ### Notes: 
-* Currently works for iOS only.
-* Tested using iOS 6.1 and 7.0
-* Tested so far only using Phonegap CLI 3.1.0
-* Requires using Phonegap CLI for automatic local installation
+* Tested using iOS 6.1 and 7.0, Android 4.3
+* Tested so far only using Cordova CLI 3.4.0
+* Requires using Cordova CLI for automatic local installation
 
 ### Files Modified from the [RevMob Phonegap Cordova SDK](http://sdk.revmobmobileadnetwork.com/phonegap_cordova.html) to enable automatic installation:
 * plugin.xml - to meet Phonegap CLI plugin inclusion specs
 * www/revmob.js - to be in line with core Apache Cordova plugin design, also including an initWithAppId: method
-* I have not modified RevMob's included `src/ios/librevmob-ios-wrapper.a` or `src/ios/RevMobPlugin.h` whatsoever
+* I have not modified RevMob's included `src/ios/librevmob-ios-wrapper.a`, `src/ios/RevMobPlugin.h` or `src/android/revmob-android-wrapper.jar` whatsoever
 
 ### Changes from [Official SDK Documentation](http://sdk.revmobmobileadnetwork.com/phonegap_cordova.html)
 * I've updated how you start a RevMob session/initialize the SDK. See Installation step #3 below. All other function calls are the same as the official documentation.
@@ -26,7 +25,7 @@ Update to the official [RevMob Phonegap Cordova SDK](http://sdk.revmobmobileadne
   </feature>
   ```   
  2. Install the plugin with Phonegap CLI: 
-    `phonegap local plugin install https://github.com/kerryknight/phonegap-revmob-plugin.git`
+    `phonegap local plugin install https://github.com/vzamishlyaev/phonegap-revmob-plugin.git`
  3. You must call `RevMob.initWithAppId("YOUR_REVMOB_APP_ID_HERE")` to initialize the SDK; a good place to put this might be within your 'deviceready' event handler in a head tag like so:
 ```
 <script type="text/javascript" charset="utf-8">
