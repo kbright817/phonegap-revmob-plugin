@@ -1,69 +1,42 @@
-/*
- * revmob.js
- * Adapted by Kerry Knight on 2013-10-15
- *
- *
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- *
-*/
+function RevMob(appId) {
+	this.appId = appId;
+	this.TEST_DISABLED = 0;
+	this.TEST_WITH_ADS = 1;
+	this.TEST_WITHOUT_ADS = 2;
 
-(function(cordova) {
+	this.startSession = function(successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, "RevMobPlugin", "startSession", [appId]);
+  }
 
-	var exec = require('cordova/exec'),
-		service = 'RevMobPlugin';
+	this.showFullscreen = function(successCallback, errorCallback) {
+		cordova.exec(successCallback, errorCallback, "RevMobPlugin", "showFullscreen", []);
+	}
 
-	var RevMob = {
-	    initWithAppId: function(appId, successCallback, errorCallback) {
-			if(!appId) return false;
+	this.openAdLink = function(successCallback, errorCallback) {
+		cordova.exec(successCallback, errorCallback, "RevMobPlugin", "openAdLink", []);
+	}
 
-			var s = this;
-			s.TEST_DISABLED = 0;
-			s.TEST_WITH_ADS = 1;
-			s.TEST_WITHOUT_ADS = 2;
+	this.showPopup = function(successCallback, errorCallback) {
+		cordova.exec(successCallback, errorCallback, "RevMobPlugin", "showPopup", []);
+	}
 
-			return cordova.exec(successCallback, errorCallback, service, "startSession", [appId]);
-		},
+	this.showBanner = function(successCallback, errorCallback) {
+		cordova.exec(successCallback, errorCallback, "RevMobPlugin", "showBanner", []);
+	}
 
-		showFullscreen: function(successCallback, errorCallback) {
-			return cordova.exec(successCallback, errorCallback, service, "showFullscreen", []);
-		},
+	this.hideBanner = function(successCallback, errorCallback) {
+		cordova.exec(successCallback, errorCallback, "RevMobPlugin", "hideBanner", []);
+	}
 
-		openAdLink: function(successCallback, errorCallback) {
-			return cordova.exec(successCallback, errorCallback, service, "openAdLink", []);
-		},
+	this.setTestingMode = function(testingMode) {
+		cordova.exec(null, null, "RevMobPlugin", "setTestingMode", [testingMode]);
+	}
 
-		showPopup: function(successCallback, errorCallback) {
-			return cordova.exec(successCallback, errorCallback, service, "showPopup", []);
-		},
+	this.printEnvironmentInformation = function() {
+		cordova.exec(null, null, "RevMobPlugin", "printEnvironmentInformation", []);
+	}
 
-		setTestingMode: function(testingMode) {
-			return cordova.exec(null, null, service, "setTestingMode", [testingMode]);
-		},
-
-		printEnvironmentInformation: function() {
-			return cordova.exec(null, null, service, "printEnvironmentInformation", []);
-		},
-
-		setTimeoutInSeconds: function(seconds) {
-			return cordova.exec(null, null, service, "setTimeoutInSeconds", [seconds]);
-		}
-	};
-
-	module.exports = RevMob;
-
-})(window.cordova || window.Cordova || window.Phonegap || window.phonegap || window.PhoneGap);
+	this.setTimeoutInSeconds = function(seconds) {
+		cordova.exec(null, null, "RevMobPlugin", "setTimeoutInSeconds", [seconds]);
+	}
+}
